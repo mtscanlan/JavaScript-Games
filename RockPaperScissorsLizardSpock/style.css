@@ -1,0 +1,93 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Teko', sans-serif;
+}
+
+body {
+    height: 100vh;
+    background:#000;
+    display: flex;
+    flex-direction: column;
+}
+
+#gameBoard {
+    margin:auto 0px;
+}
+
+.header {
+    width: 100%;
+    padding: 20px;
+    background-color: #e2e2e2;
+}
+
+.header > h1 {
+    text-align: center;
+    font-size: 4em;
+}
+
+.scoreboard {
+    padding: 50px 20px 0px;
+    display: flex;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.scoreboard > p {
+    text-align: center;
+    font-size: 3em;
+    background-color: red;
+    padding: 0px 25px;
+}
+
+#score {
+    background-color: #e2e2e2;
+}
+
+.game {
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+}
+
+.container {
+    width: 21%;
+}
+
+.container > img {
+    margin:35% 10% 35%;
+}
+
+.container > img:active {
+    transform: scale(.9);
+    transition: transform .1s
+}
+
+.messageBox > p {
+    padding: 20px;
+    text-align: center;
+    color: red;
+    font-size: 3em;
+    background-color: #e2e2e2;
+}
+
+.glow-green {
+	box-shadow: 0px 0px 25px 0px  rgba(0,255,42,1);
+    border-radius:190px;
+    transition: box-shadow .1s ease-in;
+}
+
+.glow-white {
+	box-shadow: 0px 0px 25px 0px  rgba(255,255,255,1);
+	border-radius:190px;
+    transition: box-shadow .1s ease-in;
+}
+
+.glow-red {
+	box-shadow: 0px 0px 25px 0px  rgb(255, 0, 0);
+	border-radius:190px;
+    transition: box-shadow .1s ease-in;
+}

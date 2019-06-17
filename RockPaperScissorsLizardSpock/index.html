@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Rock Paper Scissors Lizard Spock</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Teko&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <section id="gameBoard">
+        <div class="header">
+            <h1>Rock Paper Scissors Lizard Spock</h1>
+        </div>
+
+        <div class="scoreboard">
+            <p id="user">User</p>
+            <p id="score">0:0</p>
+            <p id="comp">Comp</p>
+        </div>
+
+        <div class="game">
+            <div class="container" id="r">
+                <img src="img/rock.svg" alt="rock" id="rockImage" />
+            </div>
+
+            <div class="container" id="p">
+                <img src="img/paper.svg" alt="paper" id="paperImage" />
+            </div>
+
+            <div class="container" id="s">
+                <img src="img/scissors.svg" alt="scissors" id="scissorsImage" />
+            </div>
+
+            <div class="container" id="l">
+                <img src="img/lizard.svg" alt="lizard" id="lizardImage" />
+            </div>
+
+            <div class="container" id="v">
+                <img src="img/spock.svg" alt="spock" id="spockImage" />
+            </div>
+        </div>
+
+        <div class="messageBox">
+            <p id="message"></p>
+        </div>
+    </section>
+    
+    <script src="source.js"></script>
+</body>
+
+</html>
