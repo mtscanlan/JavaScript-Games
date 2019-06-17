@@ -31,8 +31,6 @@ class Snake {
         }
     }
 
-    get isDead() { return this.dead; }
-
     draw() {
         this.context.fillStyle = '#31a0ff';
         for(let i = 0; i < this.parts.length; i++) {
@@ -42,7 +40,6 @@ class Snake {
     }
 
     resetBoard() {
-        this.dead = false;
         this.direction = null;
         this.newDirection = null;
         this.ct = null;
