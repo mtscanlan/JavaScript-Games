@@ -1,0 +1,66 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    background-color: #000;
+    display: flex;
+    flex-direction: column;
+  }
+
+.gamesection {
+    width: 640px;
+    height: 640px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    perspective: 1000px;
+}
+
+.cardblock {
+    width: calc(25% - 10px);
+    height: calc(33.333% - 10px);
+    margin: 5px;
+    position: relative;
+    transform: scale(1);
+    transform-style: preserve-3d;
+    transition: transform .5s;
+}
+
+.cardblock.flip {
+    transform: rotateY(180deg);    
+}
+
+.cardblock:active {
+    transform: scale(0.97);
+    transition: transform .5s;
+}
+
+.frontface,
+.backface {
+    width: 100%;
+    height: 100%;
+    padding: 2px;
+    position: absolute;
+    border-radius: 10px;
+    background: #fff;
+    backface-visibility: hidden;
+}
+
+.frontface {
+    transform: rotateY(180deg);
+}
+
+.reset {
+    margin-left: auto;
+    margin-right: auto;
+}
+#resetButton {
+    width: 30vw;
+    background-color:rgb(187, 187, 187);
+    margin-left: auto;
+    margin-right: auto;
+}
