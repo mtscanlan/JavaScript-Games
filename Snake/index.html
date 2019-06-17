@@ -1,0 +1,40 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Snake Game</title>
+    <link href="https://fonts.googleapis.com/css?family=Teko&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <section class="gameBoard">
+        <div id="messageBox">
+            <h1 id="message">Use the arrow keys to move the snake!</h1>
+        </div>
+        <div class="settingsPanel">
+            <div id="difficulty">
+                <button class="diffSel" data-diff="easy">
+                    Easy
+                </button>
+                <button class="diffSel" data-diff="normal">
+                    Normal
+                </button>
+                <button class="diffSel" data-diff="hard">
+                    Hard
+                </button>
+                <button class="diffSel" data-diff="expert">
+                    Expert
+                </button>
+                <button class="diffSel" data-diff="torment">
+                    Torment
+                </button>
+            </div>
+        </div>
+        <canvas id="gameCanvas" width="1000" height="560" style="background-color: #3e3e3e"></canvas>
+    </section>
+    <script src="./apple.js"></script>
+    <script src="./snake.js"></script>
+    <script src="./source.js"></script>
+</body>
+</html>
