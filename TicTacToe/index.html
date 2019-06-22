@@ -9,52 +9,57 @@
 <body>
     <section class="gameboard">
         
-            <div class="container" id="top-left" style="border-right:5px solid #413f5c; border-bottom:5px solid #413f5c;">
-                <img src="img/X.png" alt="X" class="X hide" id="top-left-x" />
-                <img src="img/O.png" alt="0" class="O hide" id="top-left-o" />
+            <div class="container" id="0" style="border-right:5px solid #413f5c; border-bottom:5px solid #413f5c;">
+                <img src="img/X.png" alt="X" class="X hide" id="0x" />
+                <img src="img/O.png" alt="0" class="O hide" id="0o" />
             </div>
         
-            <div class="container" id="top-middle" style="border:5px solid #413f5c; border-top:0;">
-                <img src="img/X.png" alt="X" class="X hide" id="top-middle-x" />
-                <img src="img/O.png" alt="0" class="O hide" id="top-middle-o" />
+            <div class="container" id="1" style="border:5px solid #413f5c; border-top:0;">
+                <img src="img/X.png" alt="X" class="X hide" id="1x" />
+                <img src="img/O.png" alt="0" class="O hide" id="1o" />
             </div>
         
-            <div class="container" id="top-right" style="border-left:5px solid #413f5c; border-bottom:5px solid #413f5c;">
-                <img src="img/X.png" alt="X" class="X hide" id="top-right-x" />
-                <img src="img/O.png" alt="0" class="O hide" id="top-right-o" />
+            <div class="container" id="2" style="border-left:5px solid #413f5c; border-bottom:5px solid #413f5c;">
+                <img src="img/X.png" alt="X" class="X hide" id="2x" />
+                <img src="img/O.png" alt="0" class="O hide" id="2o" />
             </div>
         
-            <div class="container" id="middle-left" style="border:5px solid #413f5c; border-left:0;">
-                <img src="img/X.png" alt="X" class="X hide" id="middle-left-x" />
-                <img src="img/O.png" alt="0" class="O hide" id="middle-left-o" />
+            <div class="container" id="3" style="border:5px solid #413f5c; border-left:0;">
+                <img src="img/X.png" alt="X" class="X hide" id="3x" />
+                <img src="img/O.png" alt="0" class="O hide" id="3o" />
             </div>
         
-            <div class="container" id="middle-middle" style="border:5px solid #413f5c;">
-                <img src="img/X.png" alt="X" class="X hide" id="middle-middle-x" />
-                <img src="img/O.png" alt="0" class="O hide" id="middle-middle-o" />
+            <div class="container" id="4" style="border:5px solid #413f5c;">
+                <img src="img/X.png" alt="X" class="X hide" id="4x" />
+                <img src="img/O.png" alt="0" class="O hide" id="4o" />
             </div>
         
-            <div class="container" id="middle-right" style="border:5px solid #413f5c; border-right:0;">
-                <img src="img/X.png" alt="X" class="X hide" id="middle-right-x" />
-                <img src="img/O.png" alt="0" class="O hide" id="middle-right-o" />
+            <div class="container" id="5" style="border:5px solid #413f5c; border-right:0;">
+                <img src="img/X.png" alt="X" class="X hide" id="5x" />
+                <img src="img/O.png" alt="0" class="O hide" id="5o" />
             </div>
         
-            <div class="container" id="bottom-left" style="border-right:5px solid #413f5c; border-top:5px solid #413f5c;">
-                <img src="img/X.png" alt="X" class="X hide" id="bottom-left-x" />
-                <img src="img/O.png" alt="0" class="O hide" id="bottom-left-x" />
+            <div class="container" id="6" style="border-right:5px solid #413f5c; border-top:5px solid #413f5c;">
+                <img src="img/X.png" alt="X" class="X hide" id="6x" />
+                <img src="img/O.png" alt="0" class="O hide" id="6o" />
             </div>
          
-            <div class="container" id="bottom-middle" style="border:5px solid #413f5c; border-bottom:0;">
-                <img src="img/X.png" alt="X" class="X hide" id="bottom-middle-x" />
-                <img src="img/O.png" alt="0" class="O hide" id="bottom-middle-o" />
+            <div class="container" id="7" style="border:5px solid #413f5c; border-bottom:0;">
+                <img src="img/X.png" alt="X" class="X hide" id="7x" />
+                <img src="img/O.png" alt="0" class="O hide" id="7o" />
             </div>
         
-            <div class="container" id="bottom-right" style="border-left:5px solid #413f5c; border-top:5px solid #413f5c;">
-                <img src="img/X.png" alt="X" class="X hide" id="bottom-right-x" />
-                <img src="img/O.png" alt="0" class="O hide" id="bottom-right-o" />
+            <div class="container" id="8" style="border-left:5px solid #413f5c; border-top:5px solid #413f5c;">
+                <img src="img/X.png" alt="X" class="X hide" id="8x" />
+                <img src="img/O.png" alt="0" class="O hide" id="8o" />
             </div>
 
     </section>
+
+    <div class="reset">
+        <button onclick="reset()" id='resetButton'>Reset</button>
+    </div>
+    
     <script src="./source.js"></script>
 </body>
 </html>

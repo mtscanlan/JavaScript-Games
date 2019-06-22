@@ -41,3 +41,15 @@ body {
     visibility: visible;
     transition: visibility .2s
 }
+
+.reset {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#resetButton {
+    width: 30vw;
+    background-color:rgb(187, 187, 187);
+    margin-left: auto;
+    margin-right: auto;
+}
