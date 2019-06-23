@@ -13,11 +13,10 @@ const winComboIndexes = [
     [0, 4, 8],
     [6, 4, 2]
 ];
-
 let gameBoard = [];
 
 (function reset() {
-    cells.forEach(addEventListener('click', turnClick));
+    cells.forEach(c => c.addEventListener('click', turnClick));
     gameBoard = Array.from(Array(9).keys());
 })();
 
@@ -67,7 +66,7 @@ function gameOver(gameWon) {
             gameWon.player === humanGlyph ? "#4da6ff" : "#ff0000";
     }
 
-    cells.forEach(removeEventListener('click', turnClick));
+    cells.forEach(c => c.removeEventListener('click', turnClick));
 }
 
 function checkForAvailableMoves() {
