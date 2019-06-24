@@ -7,30 +7,6 @@ class I extends Tetrimino {
             [0, 0, 1, 0],
         ], ctx, scale, 'aqua');
     }
-
-    clear() {
-        super.clear();
-    }
-
-    draw() {
-        super.draw();
-    }
-
-    drop() {
-        super.drop();
-    }
-
-    getState() {
-        return super.getState();
-    }
-
-    move(direction) {
-        super.move(direction);
-    }
-
-    rotate() {
-        super.rotate();
-    }
 }
 
 class J extends Tetrimino {
@@ -40,30 +16,6 @@ class J extends Tetrimino {
             [0, 1, 0],
             [0, 1, 0],
         ], ctx, scale, 'blue');
-    }
-
-    clear() {
-        super.clear();
-    }
-
-    draw() {
-        super.draw();
-    }
-
-    drop() {
-        super.drop();
-    }
-
-    getState() {
-        return super.getState();
-    }
-
-    move(direction) {
-        super.move(direction);
-    }
-
-    rotate() {
-        super.rotate();
     }
 }
 
@@ -75,30 +27,6 @@ class L extends Tetrimino {
             [0, 1, 0],
         ], ctx, scale, 'coral');
     }
-
-    clear() {
-        super.clear();
-    }
-
-    draw() {
-        super.draw();
-    }
-
-    drop() {
-        super.drop();
-    }
-
-    getState() {
-        return super.getState();
-    }
-
-    move(direction) {
-        super.move(direction);
-    }
-
-    rotate() {
-        super.rotate();
-    }
 }
 
 class O extends Tetrimino {
@@ -107,30 +35,6 @@ class O extends Tetrimino {
             [1, 1],
             [1, 1]
         ], ctx, scale, 'gold');
-    }
-
-    clear() {
-        super.clear();
-    }
-
-    draw() {
-        super.draw();
-    }
-
-    drop() {
-        super.drop();
-    }
-
-    getState() {
-        return super.getState();
-    }
-
-    move(direction) {
-        super.move(direction);
-    }
-
-    rotate() {
-        super.rotate();
     }
 }
 
@@ -142,30 +46,6 @@ class S extends Tetrimino {
             [0, 0, 0]
         ], ctx, scale, 'lime');
     }
-
-    clear() {
-        super.clear();
-    }
-
-    draw() {
-        super.draw();
-    }
-
-    drop() {
-        super.drop();
-    }
-
-    getState() {
-        return super.getState();
-    }
-
-    move(direction) {
-        super.move(direction);
-    }
-
-    rotate() {
-        super.rotate();
-    }
 }
 
 class T extends Tetrimino {
@@ -176,30 +56,6 @@ class T extends Tetrimino {
             [0, 0, 0]
         ], ctx, scale, 'mediumvioletred');
     }
-
-    clear() {
-        super.clear();
-    }
-
-    draw() {
-        super.draw();
-    }
-
-    drop() {
-        super.drop();
-    }
-
-    getState() {
-        return super.getState();
-    }
-
-    move(direction) {
-        super.move(direction);
-    }
-
-    rotate() {
-        super.rotate();
-    }
 }
 
 class Z extends Tetrimino {
@@ -209,29 +65,5 @@ class Z extends Tetrimino {
             [0, 1, 1],
             [0, 0, 0]
         ], ctx, scale, 'crimson');
-    }
-
-    clear() {
-        super.clear();
-    }
-
-    draw() {
-        super.draw();
-    }
-
-    drop() {
-        super.drop();
-    }
-
-    getState() {
-        return super.getState();
-    }
-
-    move(direction) {
-        super.move(direction);
-    }
-
-    rotate() {
-        super.rotate();
     }
 }
