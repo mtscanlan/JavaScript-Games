@@ -1,3 +1,6 @@
+const GAME_BOARD_COLOR = '#3e3e3e';
+const STROKE_COLOR = '#000';
+
 class Tetrimino {
     constructor(shape, ctx, scale, color) {
         this.shape = shape;
@@ -24,9 +27,9 @@ class Tetrimino {
 
     rotate() {
         this.shape = this.shape.reverse();
-        for (var i = 0; i < this.shape.length; i++) {
-            for (var j = 0; j < i; j++) {
-                var temp = this.shape[i][j];
+        for (let i = 0; i < this.shape.length; i++) {
+            for (let j = 0; j < i; j++) {
+                let temp = this.shape[i][j];
                 this.shape[i][j] = this.shape[j][i];
                 this.shape[j][i] = temp;
             }
@@ -34,38 +37,32 @@ class Tetrimino {
     }
 
     draw() {
-        for (var y = 0; y < this.shape.length; y++) {
-            for (var x = 0; x < this.shape[y].length; x++) {
-                if (this.shape[y][x]) {
-                    this.ctx.fillStyle = this.color;
-                    //console.log(`${this.posX} + ${x * this.scale} - ${this.posY} + ${x * this.scale}`);
-                    let drawX = this.posX + (x * this.scale);
-                    let drawY = this.posY + (y * this.scale);
-                    this.ctx.fillRect(drawX, drawY, this.scale, this.scale);
+        this.getState().forEach(fs => {
+            this.ctx.fillStyle = fs.color;
+            //console.log(`${this.posX} + ${x * this.scale} - ${this.posY} + ${x * this.scale}`);
+            this.ctx.fillRect(fs.x, fs.y, this.scale, this.scale);
 
-                    this.ctx.strokeStyle = "#000";
-                    this.ctx.lineWidth = 2;
-                    this.ctx.strokeRect(drawX, drawY, this.scale, this.scale);
-                }
-            }
-        }
+            this.ctx.strokeStyle = STROKE_COLOR;
+            this.ctx.lineWidth = 2;
+            this.ctx.strokeRect(fs.x, fs.y, this.scale, this.scale);
+        });
     }
 
     clear() {
         this.getState().forEach(t => {
-            this.ctx.fillStyle = '#3e3e3e';
+            this.ctx.fillStyle = GAME_BOARD_COLOR;
             this.ctx.fillRect(t.x, t.y, this.scale, this.scale);
 
-            this.ctx.strokeStyle = "#3e3e3e";
+            this.ctx.strokeStyle = GAME_BOARD_COLOR;
             this.ctx.lineWidth = 2;
             this.ctx.strokeRect(t.x, t.x, this.scale, this.scale);
         });
     }
 
     getState() {
-        var finalState = [];
-        for (var y = 0; y < this.shape.length; y++) {
-            for (var x = 0; x < this.shape[y].length; x++) {
+        let finalState = [];
+        for (let y = 0; y < this.shape.length; y++) {
+            for (let x = 0; x < this.shape[y].length; x++) {
                 if (this.shape[y][x]) {
                     finalState.push({
                         x: this.posX + (x * this.scale),

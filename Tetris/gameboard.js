@@ -1,6 +1,9 @@
-const LEFT = "ArrowLeft";
-const RIGHT = "ArrowRight";
-const DOWN = "ArrowDown";
+const LEFT = 'ArrowLeft';
+const RIGHT = 'ArrowRight';
+const DOWN = 'ArrowDown';
+const GAME_BOARD_COLOR = '#3e3e3e';
+const STROKE_COLOR = '#000';
+
 
 class Gameboard {
     constructor(scale, difficultyLevel, canvas) {
@@ -9,7 +12,7 @@ class Gameboard {
         this.atRestStates = [];
         this.floor = [];
 
-        for (var i = 0; i < this.context.canvas.width; i = i + scale) {
+        for (let i = 0; i < this.context.canvas.width; i = i + scale) {
             this.floor.push({
                 x: i,
                 y: canvas.height
@@ -68,14 +71,43 @@ class Gameboard {
         return isOnFloor || isOnPiece;
     }
 
-    interact(key) {
-        function groupBy(xs, key) {
-            return xs.reduce(function (rv, x) {
-                (rv[x[key]] = rv[x[key]] || []).push(x);
+    handleFullRows() {
+        let groups = this.atRestStates.reduce(function (rv, x) {
+                (rv[x.y] = rv[x.y] || []).push(x);
                 return rv;
             }, {});
-        }
 
+        let removed = 0;
+        Object.keys(groups).reverse().forEach(fe => {
+            if (groups[fe].length == 10) {
+                removed++;
+                delete groups[fe];
+            } else {
+                groups[fe].forEach(pixel => pixel.y += this.scale * removed);
+            }
+        });
+        this.atRestStates = Object.values(groups).flat();
+
+        if (removed > 0) {
+            this.context.fillStyle = GAME_BOARD_COLOR;
+            this.context.fillRect(0, 0, this.context.canvas.width, this.context.canvas.height);
+
+            this.context.strokeStyle = GAME_BOARD_COLOR;
+            this.context.lineWidth = 2;
+            this.context.strokeRect(0, 0, this.context.canvas.width, this.context.canvas.height);
+
+            this.atRestStates.forEach(fe => {
+                this.context.fillStyle = fe.color;
+                this.context.fillRect(fe.x, fe.y, this.scale, this.scale);
+
+                this.context.strokeStyle = STROKE_COLOR;
+                this.context.lineWidth = 2;
+                this.context.strokeRect(fe.x, fe.y, this.scale, this.scale);
+            });
+        }
+    }
+
+    interact(key) {
         let tempCurrent = this.currentPiece.getState();
         switch (key) {
             case LEFT:
@@ -89,34 +121,7 @@ class Gameboard {
                 if (this.hasLanded()) {
                     this.atRestStates = [...this.atRestStates, ...tempCurrent];
                     this.getNextPiece();
-                    var groups = groupBy(this.atRestStates, 'y');
-                    let removed = 0;
-                    Object.keys(groups).reverse().forEach(fe => {
-                        if (groups[fe].length == 10) {
-                            removed++;
-                            delete groups[fe];
-                        } else {
-                            groups[fe].forEach(pixel => pixel.y += this.scale * removed);
-                        }
-                    });
-                    this.atRestStates = Object.values(groups).flat();
-                    if (removed > 0) {
-                        this.context.fillStyle = '#3e3e3e';
-                        this.context.fillRect(0, 0, this.context.canvas.width, this.context.canvas.height);
-    
-                        this.context.strokeStyle = "#3e3e3e";
-                        this.context.lineWidth = 2;
-                        this.context.strokeRect(0, 0, this.context.canvas.width, this.context.canvas.height);
-    
-                        this.atRestStates.forEach(fe => {
-                            this.context.fillStyle = fe.color;
-                            this.context.fillRect(fe.x, fe.y, this.scale, this.scale);
-        
-                            this.context.strokeStyle = "#000";
-                            this.context.lineWidth = 2;
-                            this.context.strokeRect(fe.x, fe.y, this.scale, this.scale);
-                        });
-                    }
+                    this.handleFullRows();
                     return;
                 }
                 break;
@@ -126,10 +131,10 @@ class Gameboard {
                 break;
         }
         tempCurrent.forEach(t => {
-            this.context.fillStyle = '#3e3e3e';
+            this.context.fillStyle = GAME_BOARD_COLOR;
             this.context.fillRect(t.x, t.y, this.scale, this.scale);
 
-            this.context.strokeStyle = "#3e3e3e";
+            this.context.strokeStyle = GAME_BOARD_COLOR;
             this.context.lineWidth = 2;
             this.context.strokeRect(t.x, t.y, this.scale, this.scale);
         });
