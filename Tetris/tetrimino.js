@@ -1,6 +1,3 @@
-const GAME_BOARD_COLOR = '#3e3e3e';
-const STROKE_COLOR = '#000';
-
 class Tetrimino {
     constructor(shape, ctx, scale, color) {
         this.shape = shape;

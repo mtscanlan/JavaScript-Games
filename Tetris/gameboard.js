@@ -9,15 +9,7 @@ class Gameboard {
     constructor(scale, difficultyLevel, canvas) {
         this.scale = scale;
         this.context = canvas.getContext('2d');
-        this.atRestStates = [];
-        this.floor = [];
-
-        for (let i = 0; i < this.context.canvas.width; i = i + scale) {
-            this.floor.push({
-                x: i,
-                y: canvas.height
-            });
-        }
+        this.atRestPixels = new Boundary(this.context, scale);
 
         this.pieces = [
             () => {
@@ -60,50 +52,19 @@ class Gameboard {
     }
 
     hasLanded() {
-        function currentPieceIntersectsPixel(pixel) {
-            return this.currentPiece.getState().some(cpp => {
-                return cpp.x == pixel.x && cpp.y == pixel.y;
-            })
-        }
-
-        let isOnFloor = this.floor.filter(currentPieceIntersectsPixel.bind(this)).length > 0;
-        let isOnPiece = this.atRestStates.flat().filter(currentPieceIntersectsPixel.bind(this)).length > 0;
-        return isOnFloor || isOnPiece;
+        return this.currentPiece.getState().some(s => this.atRestPixels.isInFloor(s)) || 
+            this.currentPiece.getState().some(s => this.atRestPixels.isInPixel(s));
     }
 
-    handleFullRows() {
-        let groups = this.atRestStates.reduce(function (rv, x) {
-                (rv[x.y] = rv[x.y] || []).push(x);
-                return rv;
-            }, {});
+    collision() {
+        return this.currentPiece.getState().some(s => this.atRestPixels.isInWall(s)) || 
+            this.currentPiece.getState().some(s => this.atRestPixels.isInPixel(s));
+    }
 
-        let removed = 0;
-        Object.keys(groups).reverse().forEach(fe => {
-            if (groups[fe].length == 10) {
-                removed++;
-                delete groups[fe];
-            } else {
-                groups[fe].forEach(pixel => pixel.y += this.scale * removed);
-            }
-        });
-        this.atRestStates = Object.values(groups).flat();
-
+    removeFullRows() {
+        let removed = this.atRestPixels.checkAndRemoveFullRowOfPixels();
         if (removed > 0) {
-            this.context.fillStyle = GAME_BOARD_COLOR;
-            this.context.fillRect(0, 0, this.context.canvas.width, this.context.canvas.height);
-
-            this.context.strokeStyle = GAME_BOARD_COLOR;
-            this.context.lineWidth = 2;
-            this.context.strokeRect(0, 0, this.context.canvas.width, this.context.canvas.height);
-
-            this.atRestStates.forEach(fe => {
-                this.context.fillStyle = fe.color;
-                this.context.fillRect(fe.x, fe.y, this.scale, this.scale);
-
-                this.context.strokeStyle = STROKE_COLOR;
-                this.context.lineWidth = 2;
-                this.context.strokeRect(fe.x, fe.y, this.scale, this.scale);
-            });
+            this.atRestPixels.redrawPixels();
         }
     }
 
@@ -111,33 +72,44 @@ class Gameboard {
         let tempCurrent = this.currentPiece.getState();
         switch (key) {
             case LEFT:
-                this.currentPiece.moveLeft(key);
+                this.currentPiece.moveLeft();
+                if (this.collision()) {
+                    this.currentPiece.moveRight();
+                    return;
+                }
                 break;
             case RIGHT:
-                this.currentPiece.moveRight(key);
+                this.currentPiece.moveRight();
+                if (this.collision()) {
+                    this.currentPiece.moveLeft();
+                    return;
+                }
                 break;
             case DOWN:
                 this.currentPiece.drop();
                 if (this.hasLanded()) {
-                    this.atRestStates = [...this.atRestStates, ...tempCurrent];
+                    tempCurrent.forEach(fe => this.atRestPixels.addPixel(fe));
                     this.getNextPiece();
-                    this.handleFullRows();
+                    this.removeFullRows();
                     return;
                 }
                 break;
             case ' ':
                 this.currentPiece.rotate();
+                if (this.atRestPixels.isInLeftWall())
             default:
                 break;
         }
-        tempCurrent.forEach(t => {
+
+        tempCurrent.forEach(fe => {
             this.context.fillStyle = GAME_BOARD_COLOR;
-            this.context.fillRect(t.x, t.y, this.scale, this.scale);
+            this.context.fillRect(fe.x, fe.y, this.scale, this.scale);
 
             this.context.strokeStyle = GAME_BOARD_COLOR;
             this.context.lineWidth = 2;
-            this.context.strokeRect(t.x, t.y, this.scale, this.scale);
+            this.context.strokeRect(fe.x, fe.y, this.scale, this.scale);
         });
+
         this.currentPiece.draw();
     }
 }
