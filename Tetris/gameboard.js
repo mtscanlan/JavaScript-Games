@@ -4,7 +4,6 @@ const DOWN = 'ArrowDown';
 const GAME_BOARD_COLOR = '#3e3e3e';
 const STROKE_COLOR = '#000';
 
-
 class Gameboard {
     constructor(scale, difficultyLevel, canvas) {
         this.scale = scale;
@@ -96,7 +95,18 @@ class Gameboard {
                 break;
             case ' ':
                 this.currentPiece.rotate();
-                if (this.atRestPixels.isInLeftWall())
+                if (this.collision()) {
+                    this.currentPiece.rotate();
+                    this.currentPiece.rotate();
+                    this.currentPiece.rotate();
+                }
+
+                while(this.currentPiece.getState().some(s => this.atRestPixels.isInLeftWall(s))) {
+                    this.currentPiece.moveRight();
+                }
+                while(this.currentPiece.getState().some(s => this.atRestPixels.isInRightWall(s))) {
+                    this.currentPiece.moveLeft();
+                }
             default:
                 break;
         }

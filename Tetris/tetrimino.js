@@ -36,7 +36,6 @@ class Tetrimino {
     draw() {
         this.getState().forEach(fs => {
             this.ctx.fillStyle = fs.color;
-            //console.log(`${this.posX} + ${x * this.scale} - ${this.posY} + ${x * this.scale}`);
             this.ctx.fillRect(fs.x, fs.y, this.scale, this.scale);
 
             this.ctx.strokeStyle = STROKE_COLOR;
